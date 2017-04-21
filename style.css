@@ -7,12 +7,12 @@
 	width: 70%;
 }
 .label {
-	color: #fff;
+	color: #FFF;
 	display: inline-block;
 	text-align: center;
     text-decoration: none;
     font-size: 16px;
-    
+
 }
 
 @font-face {
@@ -25,7 +25,7 @@ a.compname {
 	font-family: companyFont;
 	font-size: 30px;
 	margin-bottom: 40px;
-	padding: 14px;
+	padding: 15px;
 }
 .menu {
 	float:right;
@@ -42,7 +42,7 @@ a:hover {
 }
 
 .menu a{
-	    padding: 22px 16px;
+	    padding: 22px 18px;
 }
 span a{
 	font-size: 16px;
@@ -63,6 +63,55 @@ span a{
 	padding:1.5%;
 	font-size: 25px;
 }
+
+.combocontent1 {
+	padding:0.4%;
+	font-size: 20px;
+}
+
+.slides {
+	display: none;
+}
+
+/*.slidenumber {
+	color: #F2F2F2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+}
+*/
+.dot {
+	cursor: pointer;
+	height: 13px;
+	width: 13px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+	background-color: #717171;
+}
+
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+	from {opacity: .4}
+	to {opacity: 1}
+}
+
+@keyframes fade {
+	from {opacity: .4}
+}
+
 .gridedhats{
 	margin-top:2%;
 }
@@ -104,4 +153,60 @@ a.cell {
 	font-family: companyFont;
 	font-size: 20px;
 	text-align: center;
+}
+
+.abouttitle {
+	font-family: companyFont;
+	text-decoration-line:underline;
+	font-weight: 400;
+	font-size: 25px;
+	float:left;
+	padding-left: 190px;
+	padding-top: 10px;
+}
+
+.about {
+	font-family: 'Arial';
+	font-size: 15px;
+	text-align: left;
+	padding-top: 20px;
+	padding-left: 190px;
+	padding-right: 180px;
+}
+/* Image Zooming*/
+.col-1 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-2 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-3 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-4 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-1 img:hover {
+	height: 160px;
+	width: 200px;
+}
+.col-2 img:hover {
+	height: 160px;
+	width: 200px;
+}
+.col-3 img:hover {
+	height: 160px;
+	width: 200px;
+}
+.col-4 img:hover {
+	height: 160px;
+	width: 200px;
 }
