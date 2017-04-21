@@ -111,3 +111,40 @@ span a{
 	padding-left: 190px;
 	padding-right: 180px;
 }
+/* Image Zooming*/
+.col-1 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-2 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-3 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-4 img {
+	height: 120px;
+	width: 160px;
+	transition: all 1s ease;
+}
+.col-1 img:hover {
+	height: 160px;
+	width: 200px;
+}
+.col-2 img:hover {
+	height: 160px;
+	width: 200px;
+}
+.col-3 img:hover {
+	height: 160px;
+	width: 200px;
+}
+.col-4 img:hover {
+	height: 160px;
+	width: 200px;
+}
