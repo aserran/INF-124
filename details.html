@@ -1,0 +1,53 @@
+<!DOCTYPE>
+<html>
+<link rel="stylesheet" href="style.css">
+<head>
+	<title>CoolFitted hats</title>
+</head>
+<body>
+	<center>
+		<div class='main'>
+			<div class='content'>
+				<div class='menubar'>
+					<div class='name'>
+						<a href="index.html" class='label compname'>CoolFitted</a>
+					</div>
+					<div class='menu'>
+						<a href="index.html" class='label home'>Home</a>
+						<a href="newarr.html" class='label snap'>New Arivals</a>
+						<a href="snapbacks.html" class='label snap'>Snapbacks</a>
+						<a href="strabacks.html" class='label strap'>Strapbacks</a>
+						<a href="aboutus.html" class='label aboutus'>About us</a>
+						<a href="cart.html" class='label cart'>Cart: 0 items</a>
+					</div>
+				</div>
+				<div class='itemtitle'>
+					<div id='title' class='titlecontent'>
+					</div>
+				</div>
+				<div class='footercombo'>
+					<div class='combocontent' style="padding-top:1%; font-size: 20px">
+						CoolFitted&reg; 2017 &#8209; All Rights Reserved
+					</div>
+				</div>
+				<br/>
+				<br/>
+			</div>
+		</div>
+	</center>
+</body>
+<script >
+	window.onload = function(){
+		var div = document.getElementById('title');
+		div.innerHTML = sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[0];
+		div.innerHTML = div.innerHTML + "<br/><br/><br/><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";
+		
+	};
+	function addtocart(){
+		sessionStorage.setItem( "total", 120 );	
+	};
+	function itemclicked(name){
+		sessionStorage.setItem("item", name);
+	}
+</script>
+</html>

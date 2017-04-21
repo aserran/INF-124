@@ -51,7 +51,7 @@ span a{
 }
 .featcombo {
 	width: 70%;
-	height: 50px;
+	height: 40px;
 	margin-top: 3%;
 	background-color: #000;
 	color: #fff;
@@ -60,7 +60,7 @@ span a{
 	text-align: center;
 }
 .combocontent {
-	padding:0.4%;
+	padding:1.5%;
 	font-size: 25px;
 }
 .gridedhats{
@@ -75,12 +75,25 @@ span a{
     width: 190px;
     height: 190px;
 }
+a.cell {
+	text-decoration: none;
+	color: #000;
+}
 .row p {
 	font-family: 'Arial';
 	font-weight: 100;
 }
 .row span{
 	font-family: companyFont;
+}
+.titlecontent {
+	margin-top: 3%;
+	font-family: companyFont;
+	font-size: 16px;
+}
+.detailpic {
+	width:120px;
+	height:120px;
 }
 .footercombo {
 	width: 70%;
