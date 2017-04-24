@@ -114,11 +114,12 @@ span a{
 
 .gridedhats{
 	margin-top:2%;
+	max-width: 70%;
+	text-align: center;
 }
 [class*="col-"] {
 
     padding: 15px 15px 15px 15px;
-
     width: 14%;
     display: inline-block;
     width: 190px;
@@ -138,11 +139,37 @@ a.cell {
 .titlecontent {
 	margin-top: 3%;
 	font-family: companyFont;
-	font-size: 16px;
+	font-size: 20px;
 }
+.itemdetail {
+	float:center;
+	font-family: companyFont;
+	font-size: 18px;
+	margin-left: 28.5%;
+}
+.detailcontent {
+	width:70%;
+	text-align: left;
+	display:inline-block;
+
+}
+.additembox {
+	font-family: companyFont;
+	font-size: 16px;
+ 	float: right;
+  	position: relative;
+  	left: -50%;
+  	text-align: left;
+  	margin-bottom: 20%;
+}
+.additembox  > .orderdetails{
+	position: relative;
+  	left: 50%;
+}
+
 .detailpic {
-	width:120px;
-	height:120px;
+	width:160px;
+	height:160px;
 }
 .footercombo {
 	width: 70%;
@@ -160,18 +187,15 @@ a.cell {
 	text-decoration-line:underline;
 	font-weight: 400;
 	font-size: 25px;
-	float:left;
-	padding-left: 190px;
+	float: center;
 	padding-top: 10px;
 }
 
 .about {
 	font-family: 'Arial';
 	font-size: 15px;
-	text-align: left;
-	padding-top: 20px;
-	padding-left: 190px;
-	padding-right: 180px;
+	text-align: justify; 
+	width:70%;
 }
 /* Image Zooming*/
 .col-1 img {
