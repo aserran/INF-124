@@ -14,7 +14,7 @@
 					</div>
 					<div class='menu'>
 						<a href="index.html" class='label home'>Home</a>
-						<a href="newarr.html" class='label snap'>New Arivals</a>
+						<a href="newarr.html" class='label snap'>New Arrivals</a>
 						<a href="snapbacks.html" class='label snap'>Snapbacks</a>
 						<a href="strapbacks.html" class='label strap'>Strapbacks</a>
 						<a href="aboutus.html" class='label aboutus'>About us</a>
@@ -40,7 +40,7 @@
 			var div = document.getElementById('title');
 			div.innerHTML = sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[0];
 			div.innerHTML = div.innerHTML + "<br/><br/><br/><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";
-
+			//div.innerHTML = "<style>" + "detailpic {overflow:hidden;width:190px;height:150px;}" + "detailpic img {-webkit-transition: all 1s ease;-moz-transition: all 1s ease;-ms-transition: all 1s ease;-o-transition: all 1s ease;transition: all 1s ease;}" + "detailpic img:hover {-webkit-transform:scale(1.25);-moz-transform:scale(1.25);-ms-transform:scale(1.25);-o-transform:scale(1.25);transform:scale(1.25);}"+"</style>";
 		};
 		function addtocart(){
 			sessionStorage.setItem( "total", 120 );
@@ -49,5 +49,6 @@
 			sessionStorage.setItem("item", name);
 		}
 	</script>
+
 </body>
 </html>
