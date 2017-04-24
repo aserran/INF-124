@@ -66,7 +66,7 @@ span a{
 
 .combocontent1 {
 	padding:0.4%;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .slides {
@@ -233,4 +233,23 @@ a.cell {
 .col-4 img:hover {
 	height: 160px;
 	width: 200px;
+}
+
+.fran {
+	float: left;
+	padding-left: 190px;
+	padding-right: 290px;
+}
+
+.tony {
+	//float: right;
+	//padding-right: 100px;
+}
+
+.founders {
+	font-family: companyFont;
+	font-weight: 400;
+	font-size: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
