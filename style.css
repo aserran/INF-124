@@ -170,7 +170,7 @@ a.cell {
 .detailpic {
 <<<<<<< HEAD
 	overflow:hidden;
-	width:190px;
+	width:210px;
 	height:150px;
 =======
 	width:160px;
@@ -217,7 +217,7 @@ a.cell {
 .about {
 	font-family: 'Arial';
 	font-size: 15px;
-	text-align: justify; 
+	text-align: justify;
 	width:70%;
 }
 /* Image Zooming*/
