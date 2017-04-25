@@ -119,7 +119,7 @@ span a{
 }
 [class*="col-"] {
 
-    padding: 15px 15px 15px 15px;
+    padding: 20px 20px 20px 20px;
     width: 14%;
     display: inline-block;
     width: 190px;
@@ -168,9 +168,27 @@ a.cell {
 }
 
 .detailpic {
-	width:160px;
-	height:160px;
+	overflow:hidden;
+	width:210px;
+	height:150px;
 }
+
+.detailpic img {
+	-webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
+}
+
+.detailpic img:hover {
+	-webkit-transform:scale(1.25); /* Safari and Chrome */
+  -moz-transform:scale(1.25); /* Firefox */
+  -ms-transform:scale(1.25); /* IE 9 */
+  -o-transform:scale(1.25); /* Opera */
+  transform:scale(1.25);
+}
+
 .footercombo {
 	width: 70%;
 	height: 40px;
@@ -194,28 +212,44 @@ a.cell {
 .about {
 	font-family: 'Arial';
 	font-size: 15px;
-	text-align: justify; 
+	text-align: justify;
 	width:70%;
 }
 /* Image Zooming*/
 .col-1 img {
 	height: 120px;
 	width: 160px;
+	-webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
 	transition: all 1s ease;
 }
 .col-2 img {
 	height: 120px;
 	width: 160px;
+	-webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
 	transition: all 1s ease;
 }
 .col-3 img {
 	height: 120px;
 	width: 160px;
+	-webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
 	transition: all 1s ease;
 }
 .col-4 img {
 	height: 120px;
 	width: 160px;
+	-webkit-transition: all 1s ease; /* Safari and Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* IE 9 */
+  -o-transition: all 1s ease; /* Opera */
 	transition: all 1s ease;
 }
 .col-1 img:hover {
