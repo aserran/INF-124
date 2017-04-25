@@ -4,6 +4,8 @@ Group Account: inf124grp01
 Anthony Serrano - 53934109
 Francisco Arca - 95184171
 
+website link: http://andromeda-40.ics.uci.edu:40
+
 Our website is an ecommerce site for hats and caps.
 The navigation of the website is generally easy. There are only
 5 different tabs a user can click on to view our products. These
