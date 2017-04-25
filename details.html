@@ -167,7 +167,7 @@
 		divtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
 		var divtitle = document.getElementById('title');
 		divtitle.innerHTML = "<b>"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[0]+"</b>";
-		divtitle.innerHTML = divtitle.innerHTML + "<br/><br/><br/><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";
+		divtitle.innerHTML = divtitle.innerHTML + "<br/><br/><br/><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";;
 		var divdetail = document.getElementById('detail');
 		divdetail.innerHTML = "<b>The details:</b><br/>";
 		for(i = 0;i < sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",").length-2;i++){
