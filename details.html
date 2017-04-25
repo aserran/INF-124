@@ -33,15 +33,15 @@
 				<br/>
 				</center>
 				<div class="additembox">
-
-					<form name="additem" class='orderdetails' onsubmit="validateform()" method="post">
+					<form name="additem" class="orderdetails" id='checkout' onsubmit="return validateform();" method="post">
 					<table 	cellspacing="10px">
 					<tr>
 					<th><label style='font-size: 18px;'>Checkout Form:</label></th>
+					<td>&nbsp;</td>
 					</tr>
 					<tr>
 					<td><label for="quantity">Quantity: </label></td>
-					<td><input id='quantity' style='width:35px;' name='quant' type='number' maxlength='2'value='1' required></td>
+					<td><input id='quantity' style='width:35px;' name='quant' type='number' min='1' maxlength='2' value='1' required onchange="addquantity()"></td>
 					</tr>
 					<tr>
 					<td><label for="fname">First Name: </label></td>
@@ -55,8 +55,13 @@
 					<td><label for="phone">Phone number: </label></td>
 					<td><input id ='phone' style='width:170px;' name='phone' type='phone' placeholder='XXX-XXX-XXXX' required></td>
 					</tr>
+					<tr>
+					<td><label for="email">Email: </label></td>
+					<td><input id ='email' style='width:170px;' name='email' type='email' required></td>
+					</tr>
 					<tr style="margin-top:8%;margin-bottom:8%;font-size: 17px;">
 					<th>Shipping Info:</th>
+					<td>&nbsp;</td>
 					</tr>
 					<tr>
 					<td><label for="street">Shipping Adress: </label></td>
@@ -86,7 +91,7 @@
 					</td>
 					</tr>
 					<tr style="margin-top:8%;margin-bottom:8%;font-size: 17px;">
-					<th>Credit Card info:</th>
+					<th>Credit Card info:</th><td>&nbsp;</td>
 					</tr>
 					<tr>
 					<td><label for="owner">Name: </label></td>
@@ -94,7 +99,7 @@
 					</tr>
 					<tr>
 					<td><label for="cardNumber">Card Number</label></td>
-                	<td><input type="text"  id="cardNumber" required></td>
+                	<td><input type="text"  id="cardNumber" style='width:170px;' name='card' required></td>
 					</tr>
 					<tr style='margin-top:5%'>
 					<td><label for="cvv">CVV:</label></td>
@@ -124,7 +129,6 @@
 	                    <option value="20"> 2020</option>
 	                    <option value="21"> 2021</option>
 	                </select></td>
-	                </td>
 					</tr>
 					<tr>
 					<td><label for="total">Total Price: </label></td>
@@ -132,17 +136,21 @@
 					</tr>
 					<tr>
 					<td>&nbsp;</td>
+					<td width='100px'><span id="error" style="color:red;font-size: 14px;"></span></td>
+					</tr>
+					<tr>
+					<td>&nbsp;</td>
 					<td><input type='submit' id='submit' name='submit' value='Place Order'></td>
 					<tr>
 					<td>&nbsp;</td>
-					<td width='100px' style='font-size: 10px;'>By clicking 'Place Order' you acknowledge that you are ready to make this purchase</td>
+					<td width='100px' style='font-size: 10px;'>By clicking 'Place Order' you acknowledge that you are aware of the total price and the item(s) desired to purchase and that you are ready to make this purchase</td>
 					</tr>
 					</tr>
 					</table>
 					</form>
 				</div>
 				<center>
-				<div class='footercombo' style="margin-top:650px;">
+				<div class='footercombo' style="margin-top:750px;">
 					<div class='combocontent' style="padding-top:1%; font-size: 20px;margin-left: 125px;">
 						CoolFitted&reg; 2017 &#8209; All Rights Reserved
 					</div>
@@ -152,7 +160,10 @@
 				<br/>
 			</div>
 		</div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 	</center>
 
 	<script >
@@ -162,6 +173,7 @@
 			div.innerHTML = div.innerHTML + "<br/><br/><br/><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";
 
 		};
+<<<<<<< HEAD
 		function addtocart(){
 			sessionStorage.setItem( "total", 120 );
 		};
@@ -176,15 +188,68 @@
 			x.style.height = "150px";
 			x.style.width = "210px";
 		}
-	</script>
-
 =======
 >>>>>>> origin/master
+	</script>
 </body>
 <script>
+	function validateform() {
+		var error = document.getElementById('error');
+		var body = 
+		error.innerHTML = "";
+		var ship = document.getElementById('shipmethod');
+		if(!(/^[- +()]*[0-9][- +()0-9]*$/).test(document.getElementById('phone').value)) {
+	    	error.innerHTML = "*Please enter a valid phone number";
+	    	document.getElementById('phone').focus();
+	    	return false;
+		}
+		else if(!(/^[a-zA-Z0-9-,.# ]*$/).test(document.getElementById('street').value)){
+			error.innerHTML = "*Please enter a valid Street Address";
+			document.getElementById('street').focus();
+			return false;
+		}
+		else if(!(/^[a-zA-Z0-9-. ]*$/).test(document.getElementById('city').value)){
+			error.innerHTML = "*Please enter a valid City";
+			document.getElementById('city').focus();
+			return false;
+		}
+		else if(!(/\b\d{5}\b/).test(document.getElementById('zip').value)){
+			error.innerHTML = "*Please enter a valid 5-digit Zip Code";
+			document.getElementById('zip').focus();
+			return false;
+		}
+		else if (ship.value == "Choose"){
+			error.innerHTML = "*Please make sure you choose a shipping method";
+			return false;
+		}
+		else if(!(/^[a-zA-Z-' ]*$/).test(document.getElementById('owner').value)){
+			error.innerHTML = "*Please enter the name exactly as it appears on your credit card";
+			document.getElementById('owner').focus();
+			return false;
+		}
+		else if(!(/^[0-9- ]*$/).test(document.getElementById('cardNumber').value)){
+			error.innerHTML = "*Please enter a valid card number";
+			document.getElementById('cardNumber').focus();
+			return false;
+		}
+		else if(!(/^[0-9]{3,4}$/).test(document.getElementById('cvv').value)){
+			error.innerHTML = "*Please enter a valid Security number (CVV)";
+			document.getElementById('cvv').focus();
+			return false;
+		}
+		if(localStorage.getItem("orderid") === null){
+			localStorage.setItem("orderid",1);
+		}
+		alert("Your order has been placed. In a few minutes you will receive an email with details. Thank you");
+		var body_message = "Hello%20"+document.getElementById('fname').value+",%0D%0AHere%20are%20your%20order%20details:%0D%0A-----------------------%0D%0AOrder%20#"+localStorage.getItem("orderid")+"%0D%0AShipping%20Address:%20"+document.getElementById('street').value+"%20"+document.getElementById('city').value+",%20"+document.getElementById('state').value+"%20"+document.getElementById('zip').value+"%0D%0AShipping%20method:%20"+document.getElementById('shipmethod').options[document.getElementById('shipmethod').selectedIndex].text+"%0D%0A-----------------------%0D%0APurchased%20with%20credit%20card%20ending%20in%20****"+document.getElementById('cardNumber').value.substr(document.getElementById('cardNumber').value.length-4)+".%0D%0AThank%20you%20for%20for%20your%20purchase!%0D%0A%0D%0A%0D%0A%0D%0AThe%20CoolFitted%20team";
+    	var mailto_link = 'mailto:' + document.getElementById('email').value + '?subject=Order #' + localStorage.getItem("orderid") + ' Details' + '&body=' + body_message;
+    	win = window.open(mailto_link, 'emailWindow');
+		localStorage.setItem("orderid",parseInt(localStorage.getItem("orderid"))+1);
+		return true;
+	}
 	window.onload = function(){
 		var divtot = document.getElementById('total');
-		divtot.innerHTML = "$"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1];
+		divtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
 		var divtitle = document.getElementById('title');
 		divtitle.innerHTML = "<b>"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[0]+"</b>";
 		divtitle.innerHTML = divtitle.innerHTML + "<br/><br/><br/><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";;
@@ -200,11 +265,6 @@
 	}
 	document.getElementById('submit').value = "Place Order"	;
 	document.getElementById('quantity').value = "1"	;
-	var select = document.getElementsByTagName("select");
-	var length = select.options.length;
-	for (i = 0; i < length; i++) {
-  		select.options[i] = null;
-	}
 	};
 </script>
 </html>
