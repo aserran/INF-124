@@ -1,13 +1,14 @@
 <!DOCTYPE>
 <html>
 <link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="script.js"></script>
 <head>
 	<title>CoolFitted hats</title>
 </head>
 <body>
-	<center>
 		<div class='main'>
 			<div class='content'>
+				<center>
 				<div class='menubar'>
 					<div class='name'>
 						<a href="index.html" class='label compname'>CoolFitted</a>
@@ -18,22 +19,140 @@
 						<a href="snapbacks.html" class='label snap'>Snapbacks</a>
 						<a href="strapbacks.html" class='label strap'>Strapbacks</a>
 						<a href="aboutus.html" class='label aboutus'>About us</a>
-						<a href="cart.html" class='label cart'>Cart: 0 items</a>
 					</div>
 				</div>
 				<div class='itemtitle'>
 					<div id='title' class='titlecontent'>
 					</div>
 				</div>
-				<div class='footercombo'>
-					<div class='combocontent' style="padding-top:1%; font-size: 20px">
+				<br/>
+				<div class='itemdetail'>
+					<div id ='detail' class='detailcontent'>
+					</div>
+				</div>
+				<br/>
+				</center>
+				<div class="additembox">
+					
+					<form name="additem" class='orderdetails' onsubmit="validateform()" method="post">
+					<table 	cellspacing="10px">
+					<tr>
+					<th><label style='font-size: 18px;'>Checkout Form:</label></th>
+					</tr>
+					<tr>
+					<td><label for="quantity">Quantity: </label></td>
+					<td><input id='quantity' style='width:35px;' name='quant' type='number' maxlength='2'value='1' required></td>
+					</tr>
+					<tr>
+					<td><label for="fname">First Name: </label></td>
+					<td><input id ='fname' style='width:170px;' name='fname' type='text' required></td>
+					</tr>
+					<tr>
+					<td><label for="lname">Last Name: </label></td>
+					<td><input id ='lname' style='width:170px;' name='lname' type='text' required></td>
+					</tr>
+					<tr>
+					<td><label for="phone">Phone number: </label></td>
+					<td><input id ='phone' style='width:170px;' name='phone' type='phone' placeholder='XXX-XXX-XXXX' required></td>
+					</tr>
+					<tr style="margin-top:8%;margin-bottom:8%;font-size: 17px;">
+					<th>Shipping Info:</th>
+					</tr>
+					<tr>
+					<td><label for="street">Shipping Adress: </label></td>
+					<td><input id ='street' style='width:170px;' name='street' type='text' placeholder='eg. 123 First Street' required></td>
+					</tr>
+					<tr>
+					<td><label for="city">City: </label></td>
+					<td><input id ='city' style='width:170px;' name='city' type='text' required></td>
+					</tr>
+					<tr>
+					<td><label for="state">State: </label></td>
+					<td><input id ='state' style='width:35px;' name='state' type='text' maxlength='2' required></td>
+					</tr>
+					<tr>
+					<td><label for="zip">Zip Code: </label></td>
+					<td><input id ='zip' style='width:70px;' name='zip' maxlength='5' type='number' required></td>
+					</tr>
+					<tr>
+					<td><label for="shipmethod">Shipping Method: </label></td>
+					<td>
+					<select name='shipmethod' id = 'shipmethod' style='width:170px;' onchange="select(this.value)">
+					<option disabled="true" selected="true" value='Choose'>Choose shipping method</option>
+  						<option value="overnight">USPS Priority Mail Express (Overnight +$24)</option>
+  						<option value="onetothree">USPS Priority Mail (1-3 Business days +$10)</option>
+  						<option value="standard">USPS Retail Ground (2-8 Business days +$0)</option>
+					</select>
+					</td>
+					</tr>
+					<tr style="margin-top:8%;margin-bottom:8%;font-size: 17px;">
+					<th>Credit Card info:</th>
+					</tr>
+					<tr>
+					<td><label for="owner">Name: </label></td>
+                	<td><input  id='owner' type="text" style='width:170px;' name='owner' required></td>
+					</tr>
+					<tr>
+					<td><label for="cardNumber">Card Number</label></td>
+                	<td><input type="text"  id="cardNumber" required></td>
+					</tr>
+					<tr style='margin-top:5%'>
+					<td><label for="cvv">CVV:</label></td>
+					<td><input type="text" id ='cvv' style='width:50px;' maxlength='4' name='cvv' required></td>
+					</tr>
+					<tr>
+					<td><label>Expiration Date:</label></td>
+	                <td><select>
+	                    <option value="01">January</option>
+	                    <option value="02">February </option>
+	                    <option value="03">March</option>
+	                    <option value="04">April</option>
+	                    <option value="05">May</option>
+	                    <option value="06">June</option>
+	                    <option value="07">July</option>
+	                    <option value="08">August</option>
+	                    <option value="09">September</option>
+	                    <option value="10">October</option>
+	                    <option value="11">November</option>
+	                    <option value="12">December</option>
+	                </select>
+	                <select>
+	                    <option value="16"> 2016</option>
+	                    <option value="17"> 2017</option>
+	                    <option value="18"> 2018</option>
+	                    <option value="19"> 2019</option>
+	                    <option value="20"> 2020</option>
+	                    <option value="21"> 2021</option>
+	                </select></td>
+	                </td>
+					</tr>
+					<tr>
+					<td><label for="total">Total Price: </label></td>
+					<td><label id ='total' style='width:auto;' name='total' value='0' disabled></label></td>
+					</tr>
+					<tr>
+					<td>&nbsp;</td>
+					<td><input type='submit' id='submit' name='submit' value='Place Order'></td>
+					<tr>
+					<td>&nbsp;</td>
+					<td width='100px' style='font-size: 10px;'>By clicking 'Place Order' you acknowledge that you are ready to make this purchase</td>
+					</tr>
+					</tr>
+					</table>
+					</form>
+				</div>
+				<center>
+				<div class='footercombo' style="margin-top:650px;">
+					<div class='combocontent' style="padding-top:1%; font-size: 20px;margin-left: 125px;">
 						CoolFitted&reg; 2017 &#8209; All Rights Reserved
 					</div>
 				</div>
+				</center>
 				<br/>
 				<br/>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</center>
 	<script >
 		window.onload = function(){
@@ -50,5 +169,33 @@
 		}
 	</script>
 
+=======
+>>>>>>> origin/master
 </body>
+<script>
+	window.onload = function(){
+		var divtot = document.getElementById('total');
+		divtot.innerHTML = "$"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1];
+		var divtitle = document.getElementById('title');
+		divtitle.innerHTML = "<b>"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[0]+"</b>";
+		divtitle.innerHTML = divtitle.innerHTML + "<br/><br/><br/><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";
+		var divdetail = document.getElementById('detail');
+		divdetail.innerHTML = "<b>The details:</b><br/>";
+		for(i = 0;i < sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",").length-2;i++){
+			divdetail.innerHTML = divdetail.innerHTML+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[i+2]+"<br/>";
+		}
+		divdetail.innerHTML = divdetail.innerHTML+"<br/><b>Price: </b>$"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]+"<br/>";
+	var elements = document.getElementsByTagName("input");
+	for (var i=0; i < elements.length; i++) {
+	    elements[i].value = "";
+	}
+	document.getElementById('submit').value = "Place Order"	;
+	document.getElementById('quantity').value = "1"	;
+	var select = document.getElementsByTagName("select");
+	var length = select.options.length;
+	for (i = 0; i < length; i++) {
+  		select.options[i] = null;
+	}
+	};
+</script>
 </html>
