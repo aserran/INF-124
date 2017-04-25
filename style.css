@@ -268,18 +268,19 @@ a.cell {
 	height: 160px;
 	width: 200px;
 }
-
-.fran {
-	float: left;
-	padding-left: 190px;
-	padding-right: 290px;
+.picwrapper{
+	width:450px;
+	height: 200px;
 }
-
-.tony {
-	//float: right;
-	//padding-right: 100px;
+.fran{
+	float:left;
+	font-family: companyFont;
 }
-
+.tony{
+	float:right;
+	font-family: companyFont;
+	padding-left:2%;
+}
 .founders {
 	font-family: companyFont;
 	font-weight: 400;
