@@ -1,7 +1,8 @@
 <!DOCTYPE>
 <html>
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="script.js?v=1"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <head>
 	<title>CoolFitted hats</title>
 </head>
@@ -33,7 +34,7 @@
 			<br/>
 			</center>
 			<div class="additembox">
-				<form name="additem" class="orderdetails" id='checkout' onsubmit="return validateform();" method="post">
+				<form name="additem" class="orderdetails" id='checkout' action="validate.php" method="post">
 					<table 	cellspacing="10px">
 						<tr>
 							<th><label style='font-size: 18px;'>Checkout Form:</label></th>
@@ -77,7 +78,7 @@
 						</tr>
 						<tr>
 							<td><label for="zip">Zip Code: </label></td>
-							<td><input id ='zip' style='width:70px;' name='zip' maxlength='5' type='number' required></td>
+							<td><input id ='zip' style='width:70px;' name='zip' maxlength='5' type='number' onchange='calculate(this.value)' required></td>
 						</tr>
 						<tr>
 							<td><label for="shipmethod">Shipping Method: </label></td>
@@ -106,22 +107,22 @@
 							<td><input type="text" id ='cvv' style='width:50px;' maxlength='4' name='cvv' required></td>
 						</tr>
 						<tr>
-							<td><label>Expiration Date:</label></td>
-			                <td><select>
-			                    <option value="01">January</option>
-			                    <option value="02">February </option>
-			                    <option value="03">March</option>
-			                    <option value="04">April</option>
-			                    <option value="05">May</option>
-			                    <option value="06">June</option>
-			                    <option value="07">July</option>
-			                    <option value="08">August</option>
-			                    <option value="09">September</option>
-			                    <option value="10">October</option>
-			                    <option value="11">November</option>
-			                    <option value="12">December</option>
+							<td><label name='expdate' id='expdate'>Expiration Date:</label></td>
+			                <td><select id='expmonth'>
+			                    <option value="01">01</option>
+			                    <option value="02">02</option>
+			                    <option value="03">03</option>
+			                    <option value="04">04</option>
+			                    <option value="05">05</option>
+			                    <option value="06">06</option>
+			                    <option value="07">07</option>
+			                    <option value="08">08</option>
+			                    <option value="09">09</option>
+			                    <option value="10">10</option>
+			                    <option value="11">11</option>
+			                    <option value="12">12</option>
 			                </select>
-			                <select>
+			                <select id='expyear'>
 			                    <option value="16"> 2016</option>
 			                    <option value="17"> 2017</option>
 			                    <option value="18"> 2018</option>
@@ -131,8 +132,16 @@
 			                </select></td>
 						</tr>
 						<tr>
-							<td><label for="total">Total Price: </label></td>
-							<td><label id ='total' style='width:auto;' name='total' value='0' disabled></label></td>
+							<td><label for="subtotal">Subtotal: </label></td>
+							<td><label id ='subtotal' style='width:auto;' name='subtotal' value='0' disabled></label></td>
+						</tr>
+						<tr>
+							<td><label for="tax">Taxes: </label></td>
+							<td><label id ='tax' style='width:auto;' name='tax'>+$0.00</label></td>
+						</tr>
+						<tr>
+							<td><label for="total"><b>Total: </b></label></td>
+							<td><label id ='total' style='width:auto;' name='total'></label></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
@@ -150,7 +159,7 @@
 				</form>
 			</div>
 			<center>
-			<div class='footercombo' style="margin-top:750px;">
+			<div class='footercombo' style="margin-top:800px;">
 				<div class='combocontent' style="padding-top:1%; font-size: 20px;margin-left: 125px;">
 					CoolFitted&reg; 2017 &#8209; All Rights Reserved
 				</div>
@@ -165,6 +174,8 @@
 	window.onload = function(){
 		var divtot = document.getElementById('total');
 		divtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
+		var divsubtot = document.getElementById('subtotal');
+		divsubtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
 		var divtitle = document.getElementById('title');
 		divtitle.innerHTML = "<b>"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[0]+"</b>";
 		divtitle.innerHTML = divtitle.innerHTML + "<br/><br/><br/><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";;
@@ -189,5 +200,49 @@
 		x.style.height = "150px";
 		x.style.width = "210px";
 	}
+	//AJAX to validate check out and calculate taxes based on zipcode
+	$("#checkout").submit(function(event) {
+      event.preventDefault();
+      $('#error').html("");
+      var $form = $( this ), url = $form.attr( 'action' );
+      var posting = $.post( url, { quantity: $('#quantity').val(),
+      							fname: $('#fname').val(), 
+      							lname: $('#lname').val(),
+      							phone: $('#phone').val(),
+      							email: $('#email').val(),
+      							street: $('#street').val(),
+      							city: $('#city').val(),
+      							state: $('#state').val(),
+      							creditzip: $('#zip').val(),
+      							shipmethod: $('#shipmethod :selected').text(),
+      							creditname: $('#owner').val(),
+      							cardNumber: $('#cardNumber').val(),
+      							cvv: $('#cvv').val(),
+      							expdate: $('#expdate :selected').text(),
+      							total: $('#total').html(),
+      							expMonth: $('#expmonth :selected').text(),
+      							expYear: $('#expyear :selected').text(),
+      							item: $('#title').text()
+      							});
+      posting.done(function( data ) {
+      	if(data.substring(0,1) == '*'){
+      		$('#error').html(data);
+      	}
+      	else{
+			window.location.href = "confirmation.html?orderid="+data;
+      	}
+   
+      });
+    });
+    function calculate(id) {
+    	if(id.length==5){
+    		var posting = $.post("validate.php",{zip:id});
+    		posting.done(function(result) {
+	            $('#tax').html("+$"+(parseFloat($('#subtotal').html().substring(1))*result).toFixed(2));
+	            $('#total').html("$"+(parseFloat($('#subtotal').html().substring(1))+parseFloat($('#tax').html().substring(2))).toFixed(2));
+
+	        });
+    	}
+	};
 </script>
 </html>
