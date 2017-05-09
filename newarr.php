@@ -1,3 +1,21 @@
+<?php
+	$dbhost = 'localhost';
+	$dbuser = 'root';
+	$dbpass = '';
+	$dbname = 'coolfitteddb';
+
+	$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+	if (!$conn) {
+		die ('Connection failed to database');
+	}
+
+	$sql = "SELECT imagepath,imagename FROM images WHERE imagename LIKE '%ap1%' AND idimages < 36";
+	$imagesquery = mysqli_query($conn, $sql);
+	if (!$imagesquery){
+		die ('Querying error');
+	}
+
+ ?>
 <!DOCTYPE>
 <html>
 <link rel="stylesheet" href="style.css">
@@ -11,31 +29,57 @@
 			<div class='content'>
 				<div class='menubar'>
 					<div class='name'>
-						<a href="index.html" class='label compname'>CoolFitted</a>
+						<a href="index.php" class='label compname'>CoolFitted</a>
 					</div>
 					<div class='menu'>
-						<a href="index.html" class='label home'>Home</a>
-						<a href="newarr.html" class='label newarr'>New Arrivals</a>
-						<a href="snapbacks.html" class='label snap'>Snapbacks</a>
-						<a href="strapbacks.html" class='label strap active'>Strapbacks</a>
+						<a href="index.php" class='label home'>Home</a>
+						<a href="newarr.php" class='label newarr active'>New Arrivals</a>
+						<a href="snapbacks.php" class='label snap'>Snapbacks</a>
+						<a href="strapbacks.php" class='label strap'>Strapbacks</a>
 						<a href="aboutus.html" class='label aboutus'>About us</a>
 					</div>
 				</div>
 				<div class='jumbo'>
-					<img src='Media/strapbanner.jpg' height="200" width="70%" style='margin-top: 3%'>
+					<img src='Media/newarrpic.jpg' height="200" width="70%" style='margin-top: 3%'>
 				</div>
 				<div class='featcombo'>
 					<div class='combocontent'>
-						Featured Strapbacks
+						New Arrivals
 					</div>
 				</div>
 				<table class='gridedhats'>
+					<?php
+						$col = 1;
+					 	while ($row = mysqli_fetch_array($imagesquery)){
+							if($col == 1){
+								echo "<tr class = 'row'>";
+							}
+							$sql2 = "SELECT title,price FROM details WHERE imagename = '".$row['imagename']."'";
+							$detailsquery = mysqli_query($conn, $sql2);
+							$dets = mysqli_fetch_array($detailsquery);
+
+							echo "	<td>
+												<a class = 'cell' onClick='itemclicked('".substr($row['imagename'], 0, -1)."')' href = 'details.html'>
+													<div class = 'col-".$col."'>
+														<img src = '".$row['imagepath']."' width = '160' height = '120'>
+														<p>".$dets['title']."<span><br>".$dets['price']."</span></p>
+													</div>
+												</a>
+											</td>";
+							if($col == 4){
+								echo "</tr>";
+								$col -= 4;
+							}
+							$col++;
+						}
+					?>
+<!--
 					<tr class='row'>
 						<td>
-							<a class="cell" onClick="itemclicked('47Navystrap')" href="details.html">
-								<div class='col-1'>
-                	<img src='Media/47Navystrap1.jpg' width='120' height='120'>
-									<p>47 Brand Cleanup Classic Dad Hat - Navy<span><br>$20.99</span></p>
+							<a class="cell" onClick="itemclicked('BMW90sm3strap')" href="details.html">
+								<div class='col-4'>
+									<img src='Media/BMW90sm3strap1.jpg' width='160' height='120'>
+									<p>90's BMW M3 Strapback- White<span><br>$35.99</span></p>
 								</div>
 							</a>
 						</td>
@@ -56,11 +100,11 @@
 							</a>
 						</td>
 						<td>
-							<a class="cell" onClick="itemclicked('CigaretteNaikestrap')" href="details.html">
-							<div class='col-4'>
-								<img src='Media/CigaretteNaikestrap1.jpg' width='160' height='120'>
-								<p>Cigarette Naike Strapback Hat - Pink<span><br>$20.99</span></p>
-							</div>
+            	<a class="cell" onClick="itemclicked('HundredsPlayersnap')" href="details.html">
+								<div class='col-4'>
+									<img src='Media/HundredsPlayersnap1.jpg' width='160' height='120'>
+									<p>The Hundreds Player Snapback - Teal, Maroon<span><br>$25.99</span></p>
+								</div>
 							</a>
 						</td>
 					</tr>
@@ -74,10 +118,10 @@
 							</a>
 						</td>
 						<td>
-							<a class="cell" onClick="itemclicked('CaliBearwhitestrap')" href="details.html">
-								<div class='col-2'>
-									<img src='Media/CaliBearwhitestrap1.jpg' width='160' height='120'>
-									<p>Cali Bear Strapback - White<span><br>$23.99</span></p>
+            	<a class="cell" onClick="itemclicked('LARamssnap')" href="details.html">
+								<div class='col-3'>
+									<img src='Media/LARamssnap1.jpg' width='160' height='120'>
+									<p>Los Angeles Rams Snapback - Black<span><br>$28.99</span></p>
 								</div>
 							</a>
 						</td>
@@ -98,7 +142,7 @@
 							</a>
 						</td>
 					</tr>
-					<tr class='row' style="margin-top:1%;">
+					<tr class='row'>
 						<td>
 							<a class="cell" onClick="itemclicked('NikeCamostrap')" href="details.html">
 								<div class='col-1'>
@@ -124,14 +168,15 @@
 							</a>
 						</td>
 						<td>
-							<a class="cell" onClick="itemclicked('BMW90sm3strap')" href="details.html">
-								<div class='col-4'>
-									<img src='Media/BMW90sm3strap1.jpg' width='160' height='120'>
-									<p>90's BMW M3 Strapback- White<span><br>$35.99</span></p>
+            	<a class="cell" onClick="itemclicked('LAblacksnap')" href="details.html">
+								<div class='col-3'>
+									<img src='Media/LAblacksnap1.jpg' width='160' height='120'>
+									<p>National Los Angeles Dodgers Snapback - Black<span><br>$28.99</span></p>
 								</div>
 							</a>
 						</td>
 					</tr>
+-->
 				</table>
 					<div class='footercombo'>
 						<div class='combocontent' style="padding-top:1%; font-size: 20px">
