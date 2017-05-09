@@ -1,8 +1,34 @@
+<?php
+	if(isset($_GET['id'])){
+		$id = $_GET['id'];
+		$id2 = substr($_GET['id'],0,-1);
+	}else{
+		echo "Product missing";
+	}
+ ?>
+ <?php
+ 	$dbhost = 'localhost';
+ 	$dbuser = 'root';
+ 	$dbpass = '';
+ 	$dbname = 'coolfitteddb';
+
+ 	$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+ 	if (!$conn) {
+ 		die ('Connection failed to database');
+ 	}
+
+ 	$sql = "SELECT imagepath,imagename FROM images WHERE imagename LIKE '%{$id2}%'";
+ 	$imagesquery = mysqli_query($conn, $sql);
+ 	if (!$imagesquery){
+ 		die ('Querying error');
+ 	}
+
+  ?>
 
 <!DOCTYPE>
 <html>
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="script.js?v=2"></script>
+<script type="text/javascript" src="script.js?v=3"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <head>
 	<title>CoolFitted hats</title>
@@ -25,11 +51,57 @@
 			</div>
 			<div class='itemtitle'>
 				<div id='title' class='titlecontent'>
+					<?php
+						$sql3 = "SELECT title FROM details WHERE imagename = '$id'";
+						$titlequery = mysqli_query($conn, $sql3);
+						$titlearray = mysqli_fetch_array($titlequery);
+						$title = $titlearray['title'];
+						echo $title;
+					 ?>
 				</div>
+			</div>
+			<br/>
+			<div class = 'detailimg'>
+				<?php
+					$col = 1;
+					echo "<tr class = 'row'>";
+					while ($row = mysqli_fetch_array($imagesquery)){
+
+						$sql2 = "SELECT title,price,description FROM details WHERE imagename = '".$row['imagename']."'";
+						$detailsquery = mysqli_query($conn, $sql2);
+						$dets = mysqli_fetch_array($detailsquery);
+
+						echo "	<td>
+											<a class = 'cell'>
+												<div class = 'col-".$col."'>
+													<img src = '".$row['imagepath']."' width = '180' height = '140'>
+												</div>
+											</a>
+										</td>";
+						$col++;
+					}
+					echo "</tr>";
+				?>
 			</div>
 			<br/>
 			<div class='itemdetail'>
 				<div id ='detail' class='detailcontent'>
+					The Details:
+					<br/>
+					<?php
+						$sql4 = "SELECT description,price FROM details WHERE imagename = '$id'";
+						$descquery = mysqli_query($conn, $sql4);
+						$descarray = mysqli_fetch_array($descquery);
+						$desc = explode("-",$descarray['description']);
+						$price = $descarray['price'];
+						foreach($desc as $i){
+							echo "- ".$i;
+							echo "<br/>";
+						}
+				
+						echo "\r\n";
+						echo $price;
+					 ?>
 				</div>
 			</div>
 			<br/>
@@ -172,36 +244,11 @@
 	</div>
 </body>
 <script>
-	window.onload = function(){
-		console.log(sessionStorage.getItem("item"));
-		var divtot = document.getElementById('total');
-		divtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
-		var divsubtot = document.getElementById('subtotal');
-		divsubtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
-		var divtitle = document.getElementById('title');
-		divtitle.innerHTML = "<b>"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[0]+"</b>";
-		divtitle.innerHTML = divtitle.innerHTML + "<br/><br/><br/><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"1.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"2.jpg'><img class='detailpic' onmouseover= 'zoomIn(this)' onmouseout= 'zoomOut(this)' src='Media/"+sessionStorage.getItem("item")+"3.jpg'>";;
-		var divdetail = document.getElementById('detail');
-		divdetail.innerHTML = "<b>The details:</b><br/>";
-		for(i = 0;i < sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",").length-2;i++){
-			divdetail.innerHTML = divdetail.innerHTML+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[i+2]+"<br/>";
-		}
-		divdetail.innerHTML = divdetail.innerHTML+"<br/><b>Price: </b>$"+sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]+"<br/>";
-	var elements = document.getElementsByTagName("input");
-	for (var i=0; i < elements.length; i++) {
-	    elements[i].value = "";
-	}
-	document.getElementById('submit').value = "Place Order"	;
-	document.getElementById('quantity').value = "1"	;
-	};
-	function zoomIn(x) {
-		x.style.height = "230px";
-		x.style.width = "290px";
-	}
-	function zoomOut(x) {
-		x.style.height = "150px";
-		x.style.width = "210px";
-	}
+	$( window ).load(function() {
+		var details = $('#detail').html();
+		$('#subtotal').html("$"+details.substring(details.indexOf('$')+1).trim());
+		$('#total').html("$"+details.substring(details.indexOf('$')+1).trim());
+	});
 	//AJAX to validate check out and calculate taxes based on zipcode
 	$("#checkout").submit(function(event) {
       event.preventDefault();
