@@ -2,7 +2,7 @@
 <!DOCTYPE>
 <html>
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="script.js?v=1"></script>
+<script type="text/javascript" src="script.js?v=2"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <head>
 	<title>CoolFitted hats</title>
@@ -173,6 +173,7 @@
 </body>
 <script>
 	window.onload = function(){
+		console.log(sessionStorage.getItem("item"));
 		var divtot = document.getElementById('total');
 		divtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
 		var divsubtot = document.getElementById('subtotal');

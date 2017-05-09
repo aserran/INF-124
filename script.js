@@ -7,6 +7,7 @@ function addquantity(){
 
 }
 function itemclicked(name){
+	alert(name);
 	sessionStorage.setItem("item", name);
 }
 function validateform() {
