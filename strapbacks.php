@@ -1,5 +1,5 @@
 <?php
-	$dbhost = 'http://sylvester-mccoy-v3.ics.uci.edu/';
+	$dbhost = 'sylvester-mccoy-v3.ics.uci.edu';
 	$dbuser = 'inf124-db-002';
 	$dbpass = 'K5GLfG5ho!!t';
 	$dbname = 'inf124-db-002';
