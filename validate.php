@@ -1,5 +1,5 @@
-<?php 
-$mysqli = new mysqli("localhost", "root", "", "coolfitteddb");
+<?php
+$mysqli = new mysqli("http://sylvester-mccoy-v3.ics.uci.edu/", "inf124-db-002", "K5GLfG5ho!!t", "inf124-db-002");
 if(isset($_POST['orderid'])){
 	$order = $mysqli->query("SELECT * FROM orders a LEFT JOIN order_item b ON a.idorders = b.orderid WHERE idorders=N'$_POST[orderid]'");
 	$orderinfo = array();
@@ -10,8 +10,8 @@ if(isset($_POST['orderid'])){
 }
 if(isset($_POST['zip'])){
 	$tax = $mysqli->query("SELECT rate FROM taxes WHERE zip=N'$_POST[zip]'");
-	if($tax === FALSE) { 
-    	die(mysql_error()); // TODO: better error handling
+	if($tax === FALSE) {
+    	die(mysql_error());
 	}
 	while($row = mysqli_fetch_array($tax)){
 		echo $row['rate'];
@@ -48,7 +48,7 @@ if(isset($_POST['fname'])){
 	else if(isset($_POST['cvv']) && !preg_match('/^[0-9]{3,4}$/', $_POST['cvv'])){
 		 die("*Please enter a valid Security number (CVV)");
 	}
-	else if(isset($_POST['expMonth']) && date("Y") >= $_POST['expYear'] && date("M") >= $_POST['expMonth']) {	
+	else if(isset($_POST['expMonth']) && date("Y") >= $_POST['expYear'] && date("M") >= $_POST['expMonth']) {
 	    die("*Oh, no! Looks like your card has expired, please verify the expiration date");
 	}
 	else{

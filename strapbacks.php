@@ -1,8 +1,8 @@
 <?php
-	$dbhost = 'localhost';
-	$dbuser = 'root';
-	$dbpass = '';
-	$dbname = 'coolfitteddb';
+	$dbhost = 'http://sylvester-mccoy-v3.ics.uci.edu/';
+	$dbuser = 'inf124-db-002';
+	$dbpass = 'K5GLfG5ho!!t';
+	$dbname = 'inf124-db-002';
 
 	$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 	if (!$conn) {

@@ -3,8 +3,6 @@ function addquantity(){
 	var divsubtotal = document.getElementById('subtotal');
 	divsubtotal.innerHTML = "$"+parseFloat(divprice)*parseInt(document.getElementById('quantity').value);
 	document.getElementById('shipmethod').selectedIndex = 0;
-	//var divtaxes = document.getElementById('tax');
-	//divtaxes.innerHTML = "+$"+(parseInt(document.getElementById('quantity').value)*parseFloat(divtaxes.innerHTML.substring(2))).toFixed(2);
 	var divtotal = document.getElementById('total');
 	divtotal.innerHTML = "$"+(parseFloat((document.getElementById('subtotal').innerHTML).substring(1))+parseFloat((document.getElementById('tax').innerHTML).substring(2))).toFixed(2);
 }
