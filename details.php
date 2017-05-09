@@ -1,3 +1,29 @@
+<?php
+	if(isset($_GET['id'])){
+		$id = $_GET['id'];
+		$id2 = substr($_GET['id'],0,-1);
+	}else{
+		echo "Product missing";
+	}
+ ?>
+ <?php
+ 	$dbhost = 'localhost';
+ 	$dbuser = 'root';
+ 	$dbpass = '';
+ 	$dbname = 'coolfitteddb';
+
+ 	$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+ 	if (!$conn) {
+ 		die ('Connection failed to database');
+ 	}
+
+ 	$sql = "SELECT imagepath,imagename FROM images WHERE imagename LIKE '%{$id2}%'";
+ 	$imagesquery = mysqli_query($conn, $sql);
+ 	if (!$imagesquery){
+ 		die ('Querying error');
+ 	}
+
+  ?>
 
 <!DOCTYPE>
 <html>
@@ -25,11 +51,53 @@
 			</div>
 			<div class='itemtitle'>
 				<div id='title' class='titlecontent'>
+					<?php
+						$sql3 = "SELECT title FROM details WHERE imagename = '$id'";
+						$titlequery = mysqli_query($conn, $sql3);
+						$titlearray = mysqli_fetch_array($titlequery);
+						$title = $titlearray['title'];
+						echo $title;
+					 ?>
 				</div>
+			</div>
+			<br/>
+			<div class = 'detailimg'>
+				<?php
+					$col = 1;
+					echo "<tr class = 'row'>";
+					while ($row = mysqli_fetch_array($imagesquery)){
+
+						$sql2 = "SELECT title,price,description FROM details WHERE imagename = '".$row['imagename']."'";
+						$detailsquery = mysqli_query($conn, $sql2);
+						$dets = mysqli_fetch_array($detailsquery);
+
+						echo "	<td>
+											<a class = 'cell'>
+												<div class = 'col-".$col."'>
+													<img src = '".$row['imagepath']."' width = '180' height = '140'>
+												</div>
+											</a>
+										</td>";
+						$col++;
+					}
+					echo "</tr>";
+				?>
 			</div>
 			<br/>
 			<div class='itemdetail'>
 				<div id ='detail' class='detailcontent'>
+					The Details:
+					<br/>
+					<?php
+						$sql4 = "SELECT description,price FROM details WHERE imagename = '$id'";
+						$descquery = mysqli_query($conn, $sql4);
+						$descarray = mysqli_fetch_array($descquery);
+						$desc = $descarray['description'];
+						$price = $descarray['price'];
+						echo  $desc;
+						echo "\r\n";
+						echo $price;
+					 ?>
 				</div>
 			</div>
 			<br/>
@@ -173,6 +241,7 @@
 </body>
 <script>
 	window.onload = function(){
+/*
 		var divtot = document.getElementById('total');
 		divtot.innerHTML = "$"+(sessionStorage.getItem(sessionStorage.getItem("item")+"1.jpg").split(",")[1]);
 		var divsubtot = document.getElementById('subtotal');
@@ -201,6 +270,7 @@
 		x.style.height = "150px";
 		x.style.width = "210px";
 	}
+*/
 	//AJAX to validate check out and calculate taxes based on zipcode
 	$("#checkout").submit(function(event) {
       event.preventDefault();

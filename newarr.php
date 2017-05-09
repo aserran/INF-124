@@ -59,7 +59,7 @@
 							$dets = mysqli_fetch_array($detailsquery);
 
 							echo "	<td>
-												<a class = 'cell' onClick='itemclicked('".substr($row['imagename'], 0, -1)."')' href = 'details.html'>
+												<a class = 'cell' onClick='itemclicked('".substr($row['imagename'], 0, -1)."')' href = 'details.php?id=".$row['imagename']."'>
 													<div class = 'col-".$col."'>
 														<img src = '".$row['imagepath']."' width = '160' height = '120'>
 														<p>".$dets['title']."<span><br>".$dets['price']."</span></p>

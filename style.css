@@ -232,6 +232,7 @@ table {
   -o-transition: all 1s ease; /* Opera */
 	transition: all 1s ease;
 }
+
 .col-1 img:hover {
 	height: 160px;
 	width: 200px;

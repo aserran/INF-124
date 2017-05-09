@@ -86,12 +86,12 @@
 							if($col == 1){
 								echo "<tr class = 'row'>";
 							}
-							$sql2 = "SELECT title,price FROM details WHERE imagename = '".$row['imagename']."'";
+							$sql2 = "SELECT title,price,iddetails FROM details WHERE imagename = '".$row['imagename']."'";
 							$detailsquery = mysqli_query($conn, $sql2);
 							$dets = mysqli_fetch_array($detailsquery);
 
 							echo "	<td>
-												<a class = 'cell' onClick='itemclicked('".substr($row['imagename'], 0, -1)."')' href = 'details.html'>
+												<a class = 'cell' onClick='itemclicked('".substr($row['imagename'], 0, -1)."')' href = 'details.php?id=".$row['imagename']."'>
 													<div class = 'col-".$col."'>
 														<img src = '".$row['imagepath']."' width = '160' height = '120'>
 														<p>".$dets['title']."<span><br>".$dets['price']."</span></p>
@@ -188,6 +188,7 @@
 		</div>
 	</center>
 </body>
+<!--
 <script>
 	window.onload = function(){
 		sessionStorage.setItem("47LAsnap1.jpg",["47 Brand Los Angeles Dodgers Snapback - Blue","29.99","- Royal Blue Crown & Visor","- Gray Undervisor","- Embroidered Dodgers Team Logo on the Front Panel","- 85% Acrylic & 15% Wool"]);
@@ -215,4 +216,5 @@
 		sessionStorage.setItem("TupacBearstrap1.jpg",["By Any Meme Tupac Bear Dad Hat - White","29.99","- White Crown, Visor, & Undervisor","- Embroidered Tupac Bear Logo","- 100% Cotton"]);
 	};
 </script>
+-->
 </html>
