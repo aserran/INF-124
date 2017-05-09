@@ -28,7 +28,7 @@
 <!DOCTYPE>
 <html>
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="script.js?v=3"></script>
+<script type="text/javascript" src="script.js?v=5"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <head>
 	<title>CoolFitted hats</title>

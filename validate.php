@@ -1,5 +1,5 @@
 <?php 
-$mysqli = new mysqli("localhost", "arcaf", "paquin13", "coolfitteddb");
+$mysqli = new mysqli("localhost", "root", "", "coolfitteddb");
 if(isset($_POST['orderid'])){
 	$order = $mysqli->query("SELECT * FROM orders a LEFT JOIN order_item b ON a.idorders = b.orderid WHERE idorders=N'$_POST[orderid]'");
 	$orderinfo = array();
