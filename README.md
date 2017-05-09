@@ -22,4 +22,3 @@ descriptions are dynamically generated using our database, the only static thing
 3) Once the form is validated and order details are stored in the database, we present the user with our confirmation.html page that uses ajax and json to generate a dynamic version of the page corresponding to the recent order placed.
 
 4) We used Ajax to generate tax rates for the user which can be seen in the details.php page when you start filling in your address information. We also used Ajax to load orders into the database. Ajax was also used to dynamically generate the confirmation page.
->>>>>>> origin/master
