@@ -26,11 +26,16 @@
 						
 					</div>
 				</div>
-
-				<div class= 'confdetails' id='confdetails'>
+				<div style='font-family:companyFont;margin-top:3%;'>
+					Thank you for your purchase, below are your confirmation details.
+				</div>
+				<div class= 'confdetails' id='confdetails' height='700'>
 					
 				</div>
-
+				<br/><br/>
+				<div>
+				<input type="button" value="Keep shopping" onclick="window.location.href = 'index.html'">
+				</div>
 				<div class='footercombo'>
 						<div class='combocontent' style="padding-top:1%; font-size: 20px">
 							CoolFitted&reg; 2017 &#8209; All Rights Reserved
@@ -48,7 +53,7 @@
       	var posting = $.post( "validate.php", { orderid:get});
     posting.done(function( data ) {
     	var confdet = JSON.parse(data);
-		$('#confdetails').html("Order:<br/><br/><p class='items'>"+confdet['quantity']+" X "+confdet['itemname']+"</p><br/><p class='items'>For:</p><br/><p class='items'>"+confdet['firstname']+" "+confdet['lastname']+"<br/>"+confdet['shippingaddress']+"<br/>"+confdet['city']+" "+data.state+"<br/>"+data.zipcode+"<br/>"+data.shippingmethod+"<br/><br/>Total: "+data.totalprice+"<br/>Charged with Credit Card with last 4 number:"+data.cardnumber+"</p>");
+		$('#confdetails').html("<table style='font-family:companyFont;margin-top:2%;'><tr><td>Order #"+get+"<br><hr></td></tr><tr><td>"+confdet[0]['quantity']+" - "+confdet[0]['itemname']+"<br><hr></td></tr><tr><td>For:</td></tr><tr><td>"+confdet[0]['firstname']+" "+confdet[0]['lastname']+"</td></tr><tr><td>"+confdet[0]['shippingaddress']+"</td></tr><tr><td>"+confdet[0]['city']+" "+confdet[0]['state']+"</td></tr><tr><td>Zip: "+confdet[0]['zipcode']+"</td></tr><tr><td>"+confdet[0]['shippingmethod']+"<br><hr></td></tr><tr><td>Total: "+confdet[0]['totalprice']+"</td></tr><tr><td>Credit Card with last 4 digits: **"+confdet[0]['cardnumber'].substring(confdet[0]['cardnumber'].length-4)+"</td></tr><table>");
 
     });
 	});

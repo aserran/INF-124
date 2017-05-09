@@ -192,6 +192,9 @@ a.cell {
 	text-align: justify;
 	width:70%;
 }
+table {
+	font-family: companyFont
+}
 /* Image Zooming*/
 .col-1 img {
 	height: 120px;
